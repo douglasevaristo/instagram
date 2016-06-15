@@ -8,6 +8,7 @@ Seguir o passo a passo desse tutorial - https://elfsight.com/blog/2016/05/how-to
 Na verdade essa etapa está no tutorial anterior. Vale lembrar que esse token deve ser criado da conta do instagram que deseja exibir as fotos.
 
 3. Inserir o fancybox dentro do head:
+
 ```javascript
 <link type="text/css" rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css"/>
 ```
@@ -15,11 +16,19 @@ Na verdade essa etapa está no tutorial anterior. Vale lembrar que esse token de
 4. Inserir o jquery e o fancybox.js antes de fechar o body:
 
 ```javascript
+<div class="insta">
+	<div class="myig_gallery"></div>
+</div>
+```
+
+5. Inserir o jquery e o fancybox.js antes de fechar o body:
+
+```javascript
 <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
 <script src="http://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
 ```
 
-5. Inserir o script abaixo fazendo a alteração necessaria no token:
+6. Inserir o script abaixo fazendo a alteração necessaria no token:
 
 ```javascript
 	$(document).ready(function(){
@@ -56,7 +65,7 @@ Na verdade essa etapa está no tutorial anterior. Vale lembrar que esse token de
 	}
 
 	$(document).ready(function(){
-		$(".demo").myig(
+		$(".insta").myig(
 			ins_id = xxxxxx, // esse id da conta pode ser obtido 
 			ins_count = 10, // Será o numero de fotos retornadas (maximo de 20)
 			ins_token = 'xxxxxxxxxxxxxxxx' // Inserir o token
