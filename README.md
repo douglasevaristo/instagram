@@ -46,21 +46,11 @@ Na verdade essa etapa está no tutorial anterior. Vale lembrar que esse token de
 	                    var b = '';
 	                    b += (c.data[i].caption == null || c.data[i].caption == undefined ? Date(c.data[i].created_time) : c.data[i].caption.text + ' - ' + Date(c.data[i].created_time));
 	                    d += '  <a href="' + c.data[i].images.standard_resolution.url.replace(/\\/, "") + '" class="myig_popup" rel="myig_popup">';
-	        
 	                    d += '		<img src="' + c.data[i].images.thumbnail.url.replace(/\\/, "") + '" alt="" title="' + b + '">';
 	                    d += '  </a>';
-	                    
 	                });
 	                d += '</section>'
-	                
-	                // if (c.pagination.next_max_id != null && c.pagination.next_max_id != undefined) {
-	                // }
 	                $(e + ' .myig_gallery').append(d);
-	                // $('.myig_more').click(function() {
-	                //     myig_gallery(e, $(this).data('next'));
-	                //     $(e + ' .load_more').remove();
-	                //     return false
-	                // })
 	            })
 	        }
 	}
