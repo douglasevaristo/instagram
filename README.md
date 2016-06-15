@@ -1,25 +1,26 @@
 # Inserindo fotos do instagram em html/jquery
 Passo a passo para adicionar fotos de um perfil do instagram em uma webpage com jquery
 
-1. Criar um app no instagram
-https://www.instagram.com/developer/
+1. Criar um app no instagram (https://www.instagram.com/developer/):
 Seguir o passo a passo desse tutorial - https://elfsight.com/blog/2016/05/how-to-get-instagram-access-token/
 
-2. Criar o token de acesso a conta 
+2. Criar o token de acesso a conta:
 Na verdade essa etapa está no tutorial anterior. Vale lembrar que esse token deve ser criado da conta do instagram que deseja exibir as fotos.
 
-3. Inserir o fancybox dentro do head
+3. Inserir o fancybox dentro do head:
 ```javascript
 <link type="text/css" rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css"/>
 ```
 
-4. Inserir o jquery e o fancybox.js antes de fechar o body
+4. Inserir o jquery e o fancybox.js antes de fechar o body:
+
 ```javascript
 <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
 <script src="http://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
 ```
 
-5. Inserir o script abaixo fazendo a alteração necessaria no token
+5. Inserir o script abaixo fazendo a alteração necessaria no token:
+
 ```javascript
 	$(document).ready(function(){
 		$(".myig_popup").fancybox({
@@ -71,5 +72,4 @@ Na verdade essa etapa está no tutorial anterior. Vale lembrar que esse token de
 			ins_token = 'xxxxxxxxxxxxxxxx' // Inserir o token
 		);
 	});
-	
 ```
