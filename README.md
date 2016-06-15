@@ -12,65 +12,64 @@ Na verdade essa etapa está no tutorial anterior. Vale lembrar que esse token de
 ```javascript
 <link type="text/css" rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css"/>
 ```
+
 4. Inserir o jquery e o fancybox.js antes de fechar o body
 ```javascript
 <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
 <script src="http://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
 ```
+
 5. Inserir o script abaixo fazendo a alteração necessaria no token
 ```javascript
-<script>
+	$(document).ready(function(){
+		$(".myig_popup").fancybox({
+			openEffect : 'fade',
+			closeEffect : 'fade'
+		});
+	});
+
+	$.fn.myig = function(g, h, j) {
+	      var k = ($(this).attr("id") != null || $(this).attr("id") != undefined ? '#' + $(this).attr("id") : '.' + $(this).attr("class"));
+	
+	      myig_gallery(k, "");
+	
+	        function myig_gallery(e, f) {
+	            $.ajax({
+	                url: 'https://api.instagram.com/v1/users/' + g + '/media/recent/?access_token=' + j + '&count=' + h + '&max_id=' + f,
+	                crossDomain: true,
+	                dataType: 'jsonp'
+	            }).done(function(c) {
+	                var d = '';
+	                d += '<section id="photos">';
+	                $.each(c.data, function(i, a) {
+	                    var b = '';
+	                    b += (c.data[i].caption == null || c.data[i].caption == undefined ? Date(c.data[i].created_time) : c.data[i].caption.text + ' - ' + Date(c.data[i].created_time));
+	                    d += '  <a href="' + c.data[i].images.standard_resolution.url.replace(/\\/, "") + '" class="myig_popup" rel="myig_popup">';
+	        
+	                    d += '		<img src="' + c.data[i].images.thumbnail.url.replace(/\\/, "") + '" alt="" title="' + b + '">';
+	                    d += '  </a>';
+	                    
+	                });
+	                d += '</section>'
+	                
+	                // if (c.pagination.next_max_id != null && c.pagination.next_max_id != undefined) {
+	                // }
+	                $(e + ' .myig_gallery').append(d);
+	                // $('.myig_more').click(function() {
+	                //     myig_gallery(e, $(this).data('next'));
+	                //     $(e + ' .load_more').remove();
+	                //     return false
+	                // })
+	            })
+	        }
+	}
 
 	$(document).ready(function(){
-      $(".myig_popup").fancybox({
-        openEffect : 'fade',
-        closeEffect : 'fade'
-      });
-    });
-
-    $.fn.myig = function(g, h, j) {
-      var k = ($(this).attr("id") != null || $(this).attr("id") != undefined ? '#' + $(this).attr("id") : '.' + $(this).attr("class"));
-
-      myig_gallery(k, "");
-
-        function myig_gallery(e, f) {
-            $.ajax({
-                url: 'https://api.instagram.com/v1/users/' + g + '/media/recent/?access_token=' + j + '&count=' + h + '&max_id=' + f,
-                crossDomain: true,
-                dataType: 'jsonp'
-            }).done(function(c) {
-                var d = '';
-                d += '<section id="photos">';
-                $.each(c.data, function(i, a) {
-                    var b = '';
-                    b += (c.data[i].caption == null || c.data[i].caption == undefined ? Date(c.data[i].created_time) : c.data[i].caption.text + ' - ' + Date(c.data[i].created_time));
-                    d += '  <a href="' + c.data[i].images.standard_resolution.url.replace(/\\/, "") + '" class="myig_popup" rel="myig_popup">';
-        
-                    d += '		<img src="' + c.data[i].images.thumbnail.url.replace(/\\/, "") + '" alt="" title="' + b + '">';
-                    d += '  </a>';
-                    
-                });
-                d += '</section>'
-                
-                // if (c.pagination.next_max_id != null && c.pagination.next_max_id != undefined) {
-                // }
-                $(e + ' .myig_gallery').append(d);
-                // $('.myig_more').click(function() {
-                //     myig_gallery(e, $(this).data('next'));
-                //     $(e + ' .load_more').remove();
-                //     return false
-                // })
-            })
-        }
-    }
-
-		$(document).ready(function(){
-			$(".demo").myig(
-				ins_id = xxxxxx, // esse id da conta pode ser obtido 
-				ins_count = 10, // Será o numero de fotos retornadas (maximo de 20)
-				ins_token = 'xxxxxxxxxxxxxxxx' // Inserir o token
-			);
-		});
+		$(".demo").myig(
+			ins_id = xxxxxx, // esse id da conta pode ser obtido 
+			ins_count = 10, // Será o numero de fotos retornadas (maximo de 20)
+			ins_token = 'xxxxxxxxxxxxxxxx' // Inserir o token
+		);
+	});
 	
-</script>
 ```
